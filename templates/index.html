@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Flask Blog</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+<!--===============================================================================================-->
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/ionicons.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='blog-sidebar/css/styles.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='blog-sidebar/css/responsive.css') }}" rel="stylesheet">
+<!--===============================================================================================-->
+
+</head>
+<body >
+
+	<header>
+		<div class="container-fluid position-relative no-side-padding">
+
+			
+
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+
+			<ul class="main-menu visible-on-click" id="main-menu">
+				<li><a href="#">Home</a></li>
+				<li><a href="/create">Create</a></li>
+				<li><a href="#">Profile</a></li>
+			</ul><!-- main-menu -->
+
+			<div class="src-area">
+				<form>
+					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+					<input class="src-input" type="text" placeholder="Type of search">
+				</form>
+			</div>
+
+		</div><!-- conatiner -->
+	</header>
+
+	<div class="slider display-table center-text">
+		<h1 class="title display-table-cell"><b>Welcome to the Blog!</b></h1>
+	</div><!-- slider -->
+
+	<section class="blog-area section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="row">
+
+
+          				{% for post in posts %}
+          				<!-- Details for each post by post,id -->
+						<div class="col-md-6 col-sm-12" >
+							<div class="card h-100" > 
+								<a href="{{ url_for('view', post_id=post.id) }}">
+								<div class="blog-info">
+									<div class="single-post post-style-1" >
+									
+										<h4 class="title"><b>{{ post.title }}</b></h4>
+										<h6> {{ post.date.strftime('%B %d, %Y') }} </h6>
+										<h5><i>Posted by {{ post.author }}</i></h5>
+									
+									</div><!-- blog-info -->
+								</div> </a><!-- single-post -->
+							</div><!-- card -->
+						</div><!-- col-md-6 col-sm-12 -->
+						{% endfor %}
+
+<!-- Card Style with big picture on the left and content on the right
+
+						<div class="col-lg-12 col-md-12">
+							<div class="card h-100">
+								<div class="single-post post-style-2">
+
+									<div class="blog-image"><img src="images/brooke-lark-194251.jpg" alt="Blog Image"></div>
+
+									<div class="blog-info">
+
+										<h6 class="pre-title"><a href="#"><b>HEALTH</b></a></h6>
+
+										<h4 class="title"><a href="#"><b>How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+											Concepts in Physics?</b></a></h4>
+
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+											ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+
+										<div class="avatar-area">
+											<a class="avatar" href="#"><img src="images/icons8-team-355979.jpg" alt="Profile Image"></a>
+											<div class="right-area">
+												<a class="name" href="#"><b>Lora Plamer</b></a>
+												<h6 class="date" href="#">on Sep 29, 2017 at 9:48am</h6>
+											</div>
+										</div>
+
+										<ul class="post-footer">
+											<li><a href="#"><i class="ion-heart"></i>57</a></li>
+											<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+											<li><a href="#"><i class="ion-eye"></i>138</a></li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+-->
+						
+
+					</div><!-- row -->
+				</div><!-- col-lg-8 col-md-12 -->
+
+				<div class="col-lg-4 col-md-12 ">
+
+					<div class="single-post info-area ">
+
+						<div class="about-area">
+							<h4 class="title"><b>Syed Sadman</b></h4>
+							<p> Right side panel for future updates to the blog. Can be used to display user profile information and links. </p>
+						</div>
+
+						<div class="subscribe-area">
+
+							<h4 class="title"><b>SUBSCRIBE</b></h4>
+							<div class="input-area">
+								<form>
+									<input class="email-input" type="text" placeholder="Enter your email">
+									<button class="submit-btn" type="submit"><i class="ion-ios-email-outline"></i></button>
+								</form>
+							</div>
+
+						</div><!-- subscribe-area -->
+
+						
+					</div><!-- info-area -->
+
+				</div><!-- col-lg-4 col-md-12 -->
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section><!-- section -->
+
+
+	<footer>
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-section">
+
+						<a class="logo" href="#"><img src="images/logo.png" alt="Logo Image"></a>
+						<p class="copyright">Bona @ 2017. All rights reserved.</p>
+						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+						
+
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+				<div class="col-lg-4 col-md-6">
+						<div class="footer-section">
+						<h4 class="title"><b>CATAGORIES</b></h4>
+						<ul>
+							<li><a href="#">BEAUTY</a></li>
+							<li><a href="#">HEALTH</a></li>
+							<li><a href="#">MUSIC</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">SPORT</a></li>
+							<li><a href="#">DESIGN</a></li>
+							<li><a href="#">TRAVEL</a></li>
+						</ul>
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-section">
+						<ul class="icons">
+							<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+						</ul>
+
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+			</div><!-- row -->
+		</div><!-- container -->
+	</footer>
+
+	<!-- SCIPTS -->
+
+	<script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+
+	<script src="{{ url_for('static', filename='js/tether.min.js') }}"></script>
+
+	<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+
+	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+</body>
+</html>
